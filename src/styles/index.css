@@ -33,20 +33,25 @@ body {
 }
 
 #work-station {
+  width: 500px;
+  height: 100px;
+}
+
+.selected {
+  border: 1px solid;
+  border-color: red;
+}
+
+.unselected {
   border: 1px solid;
   border-color: black;
-  width:20%;
-  height: 20%;
 }
 
 .area-box {
-  border: 1px solid;
-  border-color: black;
+  padding: 5px;
 }
 
 #recharge-station {
-  border: 1px solid;
-  border-color: black;
   width: 100%;
   height: 25%;
   float: right;

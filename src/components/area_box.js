@@ -1,8 +1,8 @@
 import React from 'react';
 
-const AreaBox = ( {name} ) => {
+const AreaBox = ( {name, handleClick} ) => {
     return(
-        <div className='area-box'>
+        <div className='area-box' onClick={ () => handleClick() }>
             {name}
         </div>
     )
