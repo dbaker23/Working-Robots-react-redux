@@ -1,19 +1,30 @@
 import React, { Component } from 'react';
 import AreaBox from '../components/area_box';
-import { SELECTED, UNSELECTED } from '../styles/constants';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-export default class WorkContainer extends Component {
-    handleClick() {
-        this.props.handleClick( this.props.name );
-    }
-    render() {
-        console.log( 'state', this.state.clicked );
+import { selectArea } from '../actions/index';
+
+class WorkContainer extends Component {      
+    render() {      
         return (
-            <div id='work-station' className={this.state.clicked} >
+            <div id='work-station' className={this.props.area.isSelected} >
                 <AreaBox 
-                    onClick={ () => this.handleClick() } 
+                    handleClick={this.props.selectArea} 
                     name={this.props.name} />
             </div>
         );
     }
 }
+
+const mapStateTopProps = ( state ) => {
+    return {
+        selected: state.area.selected
+    };
+}
+
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators( {selectArea: selectArea}, dispatch );
+}
+
+export default connect( mapStateTopProps, mapDispatchToProps )( WorkContainer );

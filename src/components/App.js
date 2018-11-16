@@ -1,40 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 import WorkContainer from '../containers/work_container';
 import Recharge from '../containers/recharge_container';
-import { selectArea } from '../actions/index';
 
-class App extends Component {
-  handleClick( area ) {
-    console.log( 'area', area );
-    selectArea( area );
-  }
-
+class App extends Component {  
   render() {
-    console.log( 'props', this.props );
     return (
       <div className="App">
         <div>
           <WorkContainer 
-            name='Field' 
-            handleClick={this.handleClick} 
-            robots={this.props.field} />
+            name='Field'
+            area={this.props.field} />
           <WorkContainer 
             name='Farm' 
-            handleClick={this.handleClick} 
-            robots={this.props.farm} />
+            area={this.props.farm} />
         </div>
         <div>
           <WorkContainer 
-            name='House' 
-            handleClick={this.handleClick} 
-            robots={this.props.house} />
+            name='House'
+            area={this.props.house} />
           <WorkContainer 
-            name='Store House' 
-            handleClick={this.handleClick} 
-            robots={this.props.storehouse} />
+            name='Store House'
+            area={this.props.storehouse} />
         </div>
         <Recharge />
       </div>
@@ -52,8 +40,4 @@ const mapStateToProps = ( state ) => {
   };
 }
 
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators( {selectArea: selectArea}, dispatch );
-}
-
-export default connect( mapStateToProps, mapDispatchToProps )( App );
+export default connect( mapStateToProps )( App );
